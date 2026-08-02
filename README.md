@@ -1,4 +1,4 @@
-﻿# Relational Predictive-Value Auditing
+# Relational Predictive-Value Auditing
 
 Relational predictive-value auditing (RPVA) is a held-out evaluation procedure for decomposing the incremental predictive value of nested information states across predefined relational positions in multi-agent predictions.
 
@@ -68,9 +68,8 @@ See `CITATION.cff`.
 
 ## License
 
-License selection requires author confirmation. MIT is prepared as a candidate in `LICENSE_SELECTION_REQUIRED.md`.
+No software license has currently been assigned. All rights are reserved by the authors unless permission is granted separately.
 
 ## Limitations
 
 Role definitions must be justified before analysis. Nested information states do not automatically have causal interpretation. Leakage control is the application user's responsibility. The NFL example does not prove cross-domain validity.
-
