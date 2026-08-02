@@ -56,11 +56,11 @@ Generic code is under `rpva/`; NFL-specific implementation scaffolding is under 
 
 ## Reproducibility
 
-Frozen audit configuration summaries and permitted derived summaries are included. Benchmark evidence is not rerun for release packaging. Full NFL reproduction from raw official competition files has not been verified in this repository package.
+Frozen audit configuration summaries and permitted derived summaries are included. Benchmark evidence is not rerun for release packaging. End-to-end reconstruction from raw official competition files has not been verified in this repository package.
 
 ## Authorship and maintenance
 
-This repository was created and is maintained by Haojie Long, Longji Li, and Lifeng Zhang, the authors of the associated manuscript. OpenAI-assisted tools were used for code organization, documentation, language refinement, and file preparation. These tools are not authors or maintainers. The authors reviewed the released code and documentation, verified the reported analytical outputs, and take responsibility for the repository content.
+This repository was created and is maintained by Haojie Long, Longji Li, and Lifeng Zhang, the authors of the associated manuscript. The authors are responsible for the scientific design, analytical protocol, interpretation, released code, documentation, and versioned outputs.
 
 ## Citation
 
