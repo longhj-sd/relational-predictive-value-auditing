@@ -1,0 +1,13 @@
+# V4 End-to-End Results
+
+| method | scenario | estimand | truth | mean_estimate | bias | absolute_bias | relative_bias | empirical_sd | rmse | coverage | mean_interval_width | rejection_or_power | mc_binomial_low | mc_binomial_high | coverage_mc_low | coverage_mc_high | sign_recovery | role_ordering_recovery | numerical_failure_rate | runtime_seconds | replications | resampling_replicates | root_seed | protocol_hash |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| M2_studentized_game_cluster_bootstrap_t | localized | aggregate | 0.8 | 0.800332 | 0.000332175 | 0.000332175 | 0.000415219 | 0.00973096 | 0.0097269 | 0.948 | 0.0394782 | 1 | 0.992376 | 1 | 0.924899 | 0.96427 | 1 | nan | 0 | 7.3109 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+| M2_studentized_game_cluster_bootstrap_t | localized | delta | 0.4 | 0.40021 | 0.000209609 | 0.000209609 | 0.000524022 | 0.0264379 | 0.0264123 | 0.948 | 0.104106 | 1 | 0.992376 | 1 | 0.924899 | 0.96427 | 1 | 1 | 0 | 7.3109 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+| M2_studentized_game_cluster_bootstrap_t | localized | lambda | 0.4 | 0.401252 | 0.00125157 | 0.00125157 | 0.00312893 | 0.0251131 | 0.0251192 | 0.964 | 0.103611 | 1 | 0.992376 | 1 | 0.943816 | 0.977109 | 1 | nan | 0 | 7.3109 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+| M2_studentized_game_cluster_bootstrap_t | strict_null | aggregate | 0.8 | 0.799807 | -0.000193041 | 0.000193041 | 0.000241301 | 0.00896321 | 0.00895633 | 0.968 | 0.0396432 | 1 | 0.992376 | 1 | 0.948655 | 0.980208 | 1 | nan | 0 | 7.32537 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+| M2_studentized_game_cluster_bootstrap_t | strict_null | delta | 0 | -0.000353538 | -0.000353538 | 0.000353538 | nan | 0.0258229 | 0.0257995 | 0.946 | 0.102861 | 0.054 | 0.0373744 | 0.0774266 | 0.922573 | 0.962626 | nan | nan | 0 | 7.32537 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+| M2_studentized_game_cluster_bootstrap_t | strict_null | lambda | 0 | 0.00046649 | 0.00046649 | 0.00046649 | nan | 0.0251225 | 0.0251017 | 0.964 | 0.103613 | 0.036 | 0.0228911 | 0.0561843 | 0.943816 | 0.977109 | nan | nan | 0 | 7.32537 | 500 | 999 | 2026082401 | d17fc8e56241544fb0877ee80da5bf780400ac698bb8a453f00c52917cd918f7 |
+
+V4 END-TO-END POINT RECOVERY: PASS
+V4 END-TO-END INFERENCE: PASS

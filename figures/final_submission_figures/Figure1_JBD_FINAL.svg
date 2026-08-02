@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2048" height="1133" viewBox="0 0 2048 1133">
+<rect width="2048" height="1133" fill="white"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<style>
+text{font-family:Arial,Helvetica,sans-serif;fill:#222}.panel{font-size:27px;font-weight:700}.title{font-size:28px;font-weight:700}.body{font-size:20px}.label{font-size:30px;font-weight:700}.small{font-size:18px}.box{fill:#f7f8f9;stroke:#7b8791;stroke-width:2}.arrow{stroke:#222;stroke-width:4;marker-end:url(#arrow)}.field{fill:#e8f1e8;stroke:#9db7a0;stroke-width:2}
+</style>
+<text x="70" y="82" class="panel">A</text><text x="122" y="84" class="title">General RPVA evaluation layer</text>
+<rect x="118" y="198" width="162" height="110" rx="5" class="box"/><text x="199" y="248" text-anchor="middle" class="body">Held-out</text><text x="199" y="272" text-anchor="middle" class="body">predictions</text>
+<rect x="332" y="198" width="160" height="110" rx="5" class="box"/><text x="412" y="248" text-anchor="middle" class="body">Paired</text><text x="412" y="272" text-anchor="middle" class="body">loss changes</text>
+<rect x="545" y="198" width="160" height="110" rx="5" class="box"/><text x="625" y="248" text-anchor="middle" class="body">Role</text><text x="625" y="272" text-anchor="middle" class="body">aggregation</text>
+<rect x="758" y="198" width="160" height="110" rx="5" class="box"/><text x="838" y="248" text-anchor="middle" class="body">Contrasts,</text><text x="838" y="272" text-anchor="middle" class="body">uncertainty</text>
+<line x1="286" y1="253" x2="323" y2="253" class="arrow"/><line x1="500" y1="253" x2="536" y2="253" class="arrow"/><line x1="713" y1="253" x2="750" y2="253" class="arrow"/>
+<text x="118" y="391" class="body">Evaluation above a prespecified prediction protocol</text>
+<text x="1080" y="82" class="panel">B</text><text x="1130" y="84" class="title">NFL nested audit states</text>
+<circle cx="1142" cy="247" r="48" fill="white" stroke="#7b8791" stroke-width="3"/><text x="1142" y="258" text-anchor="middle" class="label">A</text>
+<circle cx="1345" cy="247" r="48" fill="white" stroke="#7b8791" stroke-width="3"/><text x="1345" y="258" text-anchor="middle" class="label">H</text>
+<circle cx="1548" cy="247" r="48" fill="white" stroke="#7b8791" stroke-width="3"/><text x="1548" y="258" text-anchor="middle" class="label">D</text>
+<circle cx="1750" cy="247" r="48" fill="white" stroke="#7b8791" stroke-width="3"/><text x="1750" y="258" text-anchor="middle" class="label">C</text>
+<line x1="1202" y1="247" x2="1275" y2="247" class="arrow"/><line x1="1405" y1="247" x2="1478" y2="247" class="arrow"/><line x1="1608" y1="247" x2="1680" y2="247" class="arrow"/>
+<text x="1142" y="377" text-anchor="middle" class="small">observed</text><text x="1142" y="397" text-anchor="middle" class="small">movement</text><text x="1345" y="386" text-anchor="middle" class="small">+ horizon</text><text x="1548" y="377" text-anchor="middle" class="small">+ realized</text><text x="1548" y="397" text-anchor="middle" class="small">pass destination</text><text x="1750" y="377" text-anchor="middle" class="small">+ tactical</text><text x="1750" y="397" text-anchor="middle" class="small">context</text>
+<text x="1208" y="461" class="small">D and C are retrospective audit states</text>
+<text x="70" y="641" class="panel">C</text><text x="122" y="643" class="title">Relational roles within a play</text>
+<rect x="115" y="750" width="803" height="232" class="field"/>
+<line x1="372" y1="855" x2="505" y2="824" stroke="#7b8791" stroke-width="3"/>
+<circle cx="372" cy="855" r="32" fill="#e41a1c" stroke="white" stroke-width="3"/><text x="372" y="866" text-anchor="middle" class="label" fill="white">R</text>
+<circle cx="505" cy="824" r="32" fill="#1f78b4" stroke="white" stroke-width="3"/><text x="505" y="835" text-anchor="middle" class="label" fill="white">N</text>
+<circle cx="717" cy="797" r="32" fill="#808085" stroke="white" stroke-width="3"/><text x="717" y="808" text-anchor="middle" class="label" fill="white">O</text>
+<circle cx="635" cy="894" r="32" fill="#808085" stroke="white" stroke-width="3"/><text x="635" y="905" text-anchor="middle" class="label" fill="white">O</text>
+<circle cx="787" cy="937" r="32" fill="#808085" stroke="white" stroke-width="3"/><text x="787" y="948" text-anchor="middle" class="label" fill="white">O</text>
+<text x="122" y="1055" class="small">N is proximity-defined; it is not coverage assignment.</text>
+<text x="1080" y="641" class="panel">D</text><text x="1130" y="643" class="title">Forward-time empirical design</text>
+<rect x="1144" y="781" width="236" height="78" rx="5" class="box"/><text x="1262" y="831" text-anchor="middle" class="label">Weeks 1-12</text><text x="1262" y="927" text-anchor="middle" class="small">train</text>
+<rect x="1412" y="781" width="160" height="78" rx="5" class="box"/><text x="1492" y="831" text-anchor="middle" class="label">13-14</text><text x="1492" y="927" text-anchor="middle" class="small">validation</text>
+<rect x="1608" y="781" width="260" height="78" rx="5" class="box"/><text x="1738" y="831" text-anchor="middle" class="label">15-18</text><text x="1738" y="927" text-anchor="middle" class="small">held-out test</text>
+<text x="1144" y="1014" class="body">5.44M tracking rows -> 14,108 eligible plays -> 46,045 player-play units</text>
+<text x="1144" y="1067" class="body">3,246 held-out plays -> 2,307 three-role audit plays</text>
+</svg>

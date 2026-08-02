@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Relational predictive-value auditing"
+message: "If you use this software, please cite the associated manuscript."
+authors:
+  - family-names: Long
+    given-names: Haojie
+  - family-names: Li
+    given-names: Longji
+  - family-names: Zhang
+    given-names: Lifeng
+version: "1.0.0-rc1"
+repository-code: "TO_BE_ADDED_AFTER_PUBLICATION"

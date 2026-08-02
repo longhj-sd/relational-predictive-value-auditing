@@ -1,0 +1,4 @@
+data:
+  raw_data_root: null  # user-provided local path; raw NFL data are not redistributed
+analysis:
+  split: {train: 'weeks 1-12', validation: 'weeks 13-14', test: 'weeks 15-18'}

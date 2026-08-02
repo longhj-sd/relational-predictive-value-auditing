@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relational-predictive-value-auditing"
+version = "1.0.0rc1"
+description = "Held-out relational predictive-value auditing utilities"
+requires-python = ">=3.10"
+authors = [{name = "Haojie Long"}, {name = "Longji Li"}, {name = "Lifeng Zhang"}]
+license-files = []
+
+[tool.setuptools]
+packages = ["rpva"]

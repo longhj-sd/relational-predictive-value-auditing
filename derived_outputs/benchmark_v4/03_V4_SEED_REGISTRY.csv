@@ -1,0 +1,4 @@
+phase,root_seed,replications,resampling_replicates,seed_family
+calibration,2026080401,500,499,V4-CAL-20260804
+confirmatory,2026081401,2000,999,V4-CONF-20260814
+end_to_end,2026082401,500,999,V4-E2E-20260824
