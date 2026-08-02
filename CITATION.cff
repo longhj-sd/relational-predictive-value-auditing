@@ -9,4 +9,4 @@ authors:
   - family-names: Zhang
     given-names: Lifeng
 version: "1.0.0-rc1"
-repository-code: "TO_BE_ADDED_AFTER_PUBLICATION"
+repository-code: "https://github.com/longhj-sd/relational-predictive-value-auditing"

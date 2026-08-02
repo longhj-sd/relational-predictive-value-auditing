@@ -36,9 +36,9 @@ Required: `event_id`, `agent_id`, `role`, `information_state`, `y_true`, `y_pred
 
 Agent-level loss, paired gain, role-specific gains, weighted aggregate gain, prespecified contrasts, context modulation, confidence intervals, and optional null diagnostics.
 
-## NFL reproduction
+## NFL implementation scaffolding
 
-NFL-specific scripts are separated under `nfl_example/` and require local official data paths.
+NFL-specific interface templates are separated under `nfl_example/` and require local official data paths. They document the expected command-line entry points for preparing data, fitting models, running RPVA, and reproducing tables and figures from locally obtained official competition files. They are implementation scaffolding, not a verified full NFL analysis pipeline.
 
 ## Data access boundary
 
@@ -52,11 +52,15 @@ pytest
 
 ## Repository structure
 
-Generic code is under `rpva/`; NFL-specific reproduction scaffolding is under `nfl_example/`.
+Generic code is under `rpva/`; NFL-specific implementation scaffolding is under `nfl_example/`; permitted derived summaries are under `derived_outputs/`.
 
 ## Reproducibility
 
-Frozen configs and permitted derived summaries are included. Benchmark evidence is not rerun for release packaging.
+Frozen audit configuration summaries and permitted derived summaries are included. Benchmark evidence is not rerun for release packaging. Full NFL reproduction from raw official competition files has not been verified in this repository package.
+
+## Authorship and maintenance
+
+This repository was created and is maintained by Haojie Long, Longji Li, and Lifeng Zhang, the authors of the associated manuscript. OpenAI-assisted tools were used for code organization, documentation, language refinement, and file preparation. These tools are not authors or maintainers. The authors reviewed the released code and documentation, verified the reported analytical outputs, and take responsibility for the repository content.
 
 ## Citation
 

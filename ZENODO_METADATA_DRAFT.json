@@ -14,4 +14,7 @@
     }
   ],
   "description": "Draft metadata only. No DOI has been created."
+  ,
+  "repository": "https://github.com/longhj-sd/relational-predictive-value-auditing",
+  "notes": "Draft metadata only. Use only after the authors create an archived release and Zenodo DOI."
 }

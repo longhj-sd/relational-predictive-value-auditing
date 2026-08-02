@@ -1,4 +1,39 @@
 data:
   raw_data_root: null  # user-provided local path; raw NFL data are not redistributed
+  expected_source: official NFL Big Data Bowl 2026 competition files
+  redistribution: raw files excluded
 analysis:
-  split: {train: 'weeks 1-12', validation: 'weeks 13-14', test: 'weeks 15-18'}
+  split:
+    train: weeks 1-12
+    validation: weeks 13-14
+    test: weeks 15-18
+  target:
+    endpoint: final x-y endpoint
+    loss: Euclidean endpoint error in yards
+  audit_states:
+    A: observed-movement audit state
+    H: horizon-added audit state
+    D: destination-added audit state
+    C: context-added audit state
+  roles:
+    R: Targeted Receiver
+    N: Nearest Observed Coverage Defender
+    O: Other Coverage Defenders
+    n_definition: Defensive Coverage player closest to the Targeted Receiver at the final observed input frame
+    o_aggregation: within-play mean over remaining observed coverage defenders
+  primary_nfl_uncertainty:
+    method: percentile game-cluster bootstrap
+    replicates: 2000
+    seed: 20260730
+  pseudo_nearest:
+    permutations: 5000
+    p_value: add-one corrected
+    seed: 20260730
+  controlled_benchmark:
+    root_seed: 2026081401
+    monte_carlo_repetitions: 2000
+    resampling_replicates: 999
+    selected_interval_method: studentized game-cluster bootstrap-t
+  source_verification:
+    full_nfl_pipeline_verified: false
+    status: implementation scaffolding; training hyperparameters and raw-data transformation code were not verified from this public repository package
