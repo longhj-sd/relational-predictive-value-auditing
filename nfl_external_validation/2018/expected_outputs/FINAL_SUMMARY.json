@@ -1,6 +1,6 @@
 {
-  "data": "obtained",
-  "target_receiver": "official",
+  "data": "obtained under applicable competition access terms; raw files are not redistributed",
+  "target_receiver_source": "public targeted-receiver bonus labels from tombliss/nfl-big-data-bowl-2021-bonus",
   "heldout_plays": 3475,
   "primary": {
     "G_R": 0.9177859354384885,
@@ -20,8 +20,5 @@
     "null_low": -0.057224847505317374,
     "null_high": 0.05886041436992461,
     "p_value": 0.0001999600079984003
-  },
-  "category": "A",
-  "category_name": "FULL DIRECTIONAL REPLICATION",
-  "journal_recommendation": "KEEP CURRENT JBD STRATEGY"
+  }
 }

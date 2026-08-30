@@ -80,9 +80,9 @@ No post-freeze deviations were recorded. ExtraTrees robustness was skipped becau
 
 The 2018 workflow is a harmonized external replication, not an exact raw-pipeline rerun of the submitted 2023 implementation. N is proximity-defined and should not be interpreted as assigned coverage.
 
-## Replication Category
+## Replication Summary
 
-Category A: FULL DIRECTIONAL REPLICATION.
+The primary 2018 analysis reproduced the principal relational ordering, with positive nearest-other localization and pseudo-nearest falsification support.
 
 ## Scientific Interpretation
 

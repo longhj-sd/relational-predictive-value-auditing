@@ -321,14 +321,14 @@ def build_dataset(position_set: set[str], endpoint_window: int = 0, exclude_ambi
                     "gameId": gid,
                     "playId": pid,
                     "week": week,
-                    "official_target_nflId": target_id,
+                    "bonus_target_nflId": target_id,
                     "reconstructed_target_nflId": recon,
                     "exact_agreement": target_id == recon,
                     "nearest_distance_to_ball": nearest,
                     "second_nearest_distance_to_ball": second,
                     "second_minus_nearest_margin": second - nearest if pd.notna(second) else np.nan,
                     "ambiguous_reconstructed_target": ambiguous,
-                    "target_source": "OFFICIAL_BONUS",
+                    "target_source": "PUBLIC_BONUS",
                     "passResult": meta.get("passResult", ""),
                 }
             )
@@ -399,7 +399,7 @@ def build_dataset(position_set: set[str], endpoint_window: int = 0, exclude_ambi
                         "distance_to_ball_land_start": d_start,
                         "distance_to_ball_land_end": d_end,
                         "change_in_distance_to_ball_land": d_end - d_start,
-                        "target_source": "OFFICIAL_BONUS",
+                        "target_source": "PUBLIC_BONUS",
                         "ambiguous_reconstructed_target": ambiguous,
                         "defender_set_size": len(defenders),
                         "endpoint_window": endpoint_window,
@@ -567,14 +567,14 @@ def pseudo_nearest(held: pd.DataFrame, reps: int = PSEUDO_REPS, seed: int = PSEU
 def freeze_protocol(manifest: pd.DataFrame) -> None:
     config = {
         "data_source": "official NFL Big Data Bowl 2021 competition files",
-        "target_receiver_source": "tombliss/nfl-big-data-bowl-2021-bonus targetedReceiver.csv",
-        "target_label_mode": "OFFICIAL_BONUS primary; reconstructed only for QC/sensitivity if needed",
+        "target_receiver_source": "public targeted-receiver bonus labels from tombliss/nfl-big-data-bowl-2021-bonus",
+        "target_label_mode": "public bonus labels primary; reconstructed labels only for QC/sensitivity if needed",
         "event_definitions": {"snap": "earliest ball_snap", "forward": "earliest pass_forward after snap", "arrival": "earliest pass_arrived after forward"},
         "temporal_split": {"train": "weeks 1-11", "validation": "weeks 12-13", "heldout": "weeks 14-17"},
         "coordinate_normalization": "prespecified left-to-right coordinate normalization",
         "primary_defender_set": sorted(PRIMARY_POS),
         "expanded_defender_set": sorted(EXPANDED_POS),
-        "roles": {"R": "official targeted receiver", "N": "nearest coverage-eligible defender to R at pass_forward", "O": "remaining coverage-eligible defenders, within-play mean"},
+        "roles": {"R": "targeted receiver from public bonus labels", "N": "nearest coverage-eligible defender to R at pass_forward", "O": "remaining coverage-eligible defenders, within-play mean"},
         "features": {"A": A_FEATURES, "H_add": H_ADD, "D_add": D_ADD},
         "loss": "Euclidean endpoint error in yards",
         "HGB": "sklearn HistGradientBoostingRegressor defaults, random_state 20260730; deterministic preprocessing",
@@ -613,19 +613,19 @@ The 2018 analysis is an external-season RPVA replication using harmonized BDB202
     write(WORK / "protocol" / "protocol_sha256.txt", "\n".join(hashes) + "\n")
 
 
-def classify(primary: dict, ci: pd.DataFrame, pseudo: dict) -> tuple[str, str]:
+def summarize_replication(primary: dict, ci: pd.DataFrame, pseudo: dict) -> str:
     lam = primary["lambda_D"]
     lam_ci = ci[ci.estimand.eq("lambda_D")].iloc[0]
     ci_pos = lam_ci.ci_low > 0 and lam_ci.ci_high > 0
     pseudo_support = pseudo["p_value"] < 0.05 and not (pseudo["null_low"] <= lam <= pseudo["null_high"])
     ordering = primary["G_R"] > primary["G_N"] > primary["G_O"]
     if lam > 0 and ci_pos and pseudo_support and ordering:
-        return "A", "FULL DIRECTIONAL REPLICATION"
+        return "The primary 2018 analysis reproduced the principal relational ordering, with positive nearest-other localization and pseudo-nearest falsification support."
     if lam > 0 and (ci_pos or pseudo_support):
-        return "B", "PARTIAL REPLICATION"
+        return "The primary 2018 analysis supported positive nearest-other localization, while not all directional criteria were simultaneously met."
     if abs(lam) > 0.1 and (ci_pos or pseudo_support or abs(primary["G_R"] - primary["G_O"]) > 0.1):
-        return "C", "ENVIRONMENT-DEPENDENT RELATIONAL STRUCTURE"
-    return "D", "NON-REPLICATION"
+        return "The primary 2018 analysis showed relational structure whose full interpretation depends on harmonized role and feature definitions."
+    return "The primary 2018 analysis did not support a positive nearest-other localization pattern."
 
 
 def make_figures(primary_ci, comp, pseudo_null, weekly, sens):
@@ -694,11 +694,8 @@ def make_figures(primary_ci, comp, pseudo_null, weekly, sens):
     plt.close(fig)
 
 
-def make_docx_copy(category: str, result_text: str) -> None:
+def make_docx_copy(result_text: str) -> None:
     if MANUSCRIPT is None:
-        return
-    if category not in {"A", "B", "C"}:
-        write(WORK / "reports" / "NONREPLICATION_MANUSCRIPT_OPTIONS.md", "# Non-Replication Manuscript Options\n\nCategory D was not assigned; this file is not applicable.\n")
         return
     out = WORK / "Manuscript_with_2018_external_validation_DRAFT.docx"
     shutil.copy2(MANUSCRIPT, out)
@@ -770,7 +767,7 @@ def main() -> None:
 
 Generated: {now()}
 
-Official BDB2021 data were obtained and the bonus targeted receiver file was available.
+BDB2021 competition data were obtained locally under applicable access terms and the public bonus targeted-receiver file was available.
 
 ## Sample Flow
 
@@ -778,7 +775,7 @@ Official BDB2021 data were obtained and the bonus targeted receiver file was ava
 
 ## Target QC Summary
 
-- Target source: OFFICIAL_BONUS for primary labels.
+- Target source: public targeted-receiver bonus labels for primary labels.
 - Official-vs-reconstructed agreement for QC: {tqc['exact_agreement'].mean():.3f}
 - Ambiguous reconstructed-target QC flags: {int(tqc['ambiguous_reconstructed_target'].sum())} of {len(tqc)}
 """
@@ -786,7 +783,7 @@ Official BDB2021 data were obtained and the bonus targeted receiver file was ava
 
     harm = """# 2018-2023 Harmonization Report
 
-The 2018 replication uses official BDB2021 tracking files with official bonus targeted-receiver labels. A/H/D feature definitions are harmonized using the prespecified left-to-right coordinate normalization because the submitted public 2023 repository provides NFL implementation scaffolding but not a verified full raw-data transformation/fitting pipeline.
+The 2018 replication uses BDB2021 competition tracking files with public bonus targeted-receiver labels. A/H/D feature definitions are harmonized using the prespecified left-to-right coordinate normalization because the submitted public 2023 repository provides NFL implementation scaffolding but not a verified full raw-data transformation/fitting pipeline.
 
 Coverage labels and the submitted C state are not reconstructed for the 2018 confirmatory analysis.
 """
@@ -846,7 +843,7 @@ Coverage labels and the submitted C state are not reconstructed for the 2018 con
     comp.to_csv(WORK / "outputs" / "tables" / "Table3_2018_vs_2023_comparison.csv", index=False)
     pd.DataFrame(primary_build.flow_rows).to_csv(WORK / "outputs" / "tables" / "Table1_2018_sample_flow_and_harmonization.csv", index=False)
 
-    category, category_name = classify(primary, primary_ci, pseudo_sum)
+    replication_summary = summarize_replication(primary, primary_ci, pseudo_sum)
     make_figures(primary_ci, comp, pseudo_null, weekly_df, sens)
 
     strict_oob = (
@@ -891,7 +888,7 @@ Execute a held-out external-season RPVA replication on official 2018 NFL Big Dat
 
 ## Data Provenance
 
-Official BDB2021 competition files were downloaded through `python -m kaggle`. Raw files are preserved under `{RAW}`. The raw manifest is `{DATA / 'manifests' / 'RAW_DATA_MANIFEST.csv'}`.
+BDB2021 competition files were obtained through Kaggle access terms. Raw files are not redistributed. The raw manifest is `{DATA / 'manifests' / 'RAW_DATA_MANIFEST.csv'}`.
 
 ## 2018 Data Structure
 
@@ -945,9 +942,9 @@ No post-freeze deviations were recorded. ExtraTrees robustness was skipped becau
 
 The 2018 workflow is a harmonized external replication, not an exact raw-pipeline rerun of the submitted 2023 implementation. N is proximity-defined and should not be interpreted as assigned coverage.
 
-## Replication Category
+## Replication Summary
 
-Category {category}: {category_name}.
+{replication_summary}
 
 ## Scientific Interpretation
 
@@ -955,78 +952,15 @@ The 2018 evidence should be interpreted as a held-out audit of relational alloca
 """
     write(WORK / "reports" / "2018_EXTERNAL_REPLICATION_RESULTS.md", results)
 
-    inserts = f"""# Manuscript Revision Inserts
-
-## Methods: External-Season Replication
-
-We conducted a pre-specified external-season replication using official 2018 NFL Big Data Bowl 2021 tracking data. The 2018 analysis used the submitted RPVA estimands without post hoc redefinition: A captured observed movement, H added prediction horizon, and D added realized pass destination. Targeted receivers were taken from an external bonus label file, with deterministic nearest-ball reconstruction used only for QC and sensitivity. Coverage-defender roles were harmonized as the nearest observed coverage-eligible defender to the targeted receiver at pass forward and the within-play mean over remaining coverage-eligible defenders.
-
-Recommended location: Methods, after the primary NFL application design and before inference/resampling details.
-
-## Results: 2018 External-Season Evidence
-
-In held-out 2018 weeks 14-17, the primary three-role sample contained {pl[['gameId','playId']].drop_duplicates().shape[0]:,} plays. The estimated H-to-D gains were G_R={primary['G_R']:.3f}, G_N={primary['G_N']:.3f}, and G_O={primary['G_O']:.3f} yards. Nearest-other localization was lambda_D={primary['lambda_D']:.3f} yards with a 95% game-cluster bootstrap CI of [{lam_ci.ci_low:.3f}, {lam_ci.ci_high:.3f}]. The pseudo-nearest falsification yielded a null interval of [{pseudo_sum['null_low']:.3f}, {pseudo_sum['null_high']:.3f}] and P={pseudo_sum['p_value']:.4f}.
-
-Recommended location: Results, after the submitted 2023 primary NFL results.
-
-## Discussion: Cross-Season Interpretation
-
-The 2018 external-season analysis provides {category_name.lower()} under harmonized role and feature definitions. The result supports interpreting RPVA as a reusable audit layer for detecting where added information changes held-out movement prediction, while preserving the manuscript's boundary that these are predictive, not causal, allocations.
-
-Recommended location: Discussion, after the paragraph interpreting the 2023 nearest-other localization.
-
-## Limitations: 2018 Harmonization Limitations
-
-The 2018 replication required harmonization because the submitted public package did not include a verified full raw-data transformation pipeline for the 2023 NFL application. The nearest defender is therefore a proximity-defined observed defender proxy rather than an assigned coverage label, and reconstructed-target ambiguity was retained as a QC/sensitivity dimension rather than used to redefine the primary estimand.
-
-Recommended location: Limitations, near the existing deployment and tactical-context limitations.
-
-## Abstract Optional Sentence
-
-An external 2018 season audit using harmonized NFL Big Data Bowl data yielded Category {category} evidence ({category_name.lower()}), providing an out-of-season robustness check for the RPVA localization estimand.
-"""
-    write(WORK / "reports" / "MANUSCRIPT_REVISION_INSERTS.md", inserts)
-    make_docx_copy(category, "2018 external-season validation draft insert.\n\n" + inserts)
-
-    journal_rec = "KEEP CURRENT JBD STRATEGY" if category in {"A", "B"} else ("UPGRADE POSSIBLE BUT BDR IS SAFER" if category == "C" else "DO NOT USE 2018 AS CONFIRMATORY SUPPORT")
-    journal = f"""# Journal Strategy After 2018
-
-## Evidence Classification
-
-Category {category}: {category_name}.
-
-## Journal of Big Data
-
-Scope fit remains strong because RPVA is presented as a general multi-agent audit method and the 2018 replication adds external-season breadth.
-
-## Knowledge-Based Systems
-
-KBS fit improves if the external validation is Category A or B, but remaining vulnerabilities include harmonized rather than exact 2023 raw-pipeline replication and the proximity-based defender proxy.
-
-## Big Data Research
-
-BDR is a safer upgrade path when the evidence is useful but not a clean full directional replication.
-
-## Information Sciences
-
-The methodological framing may fit, but reviewer expectations for algorithmic novelty and broader benchmarks remain the main vulnerability.
-
-## Recommendation
-
-{journal_rec}
-"""
-    write(WORK / "reports" / "JOURNAL_STRATEGY_AFTER_2018.md", journal)
-
     readme = f"""# RPVA 2018 External Validation
 
 Run from PowerShell:
 
 ```powershell
-cd D:\\work\\NFL
-python .\\RPVA_2018_external_validation\\scripts\\run_2018_external_replication.py
+python .\\nfl_external_validation\\2018\\scripts\\run_2018_external_replication.py
 ```
 
-Inputs are official BDB2021 files under `{RAW}` and bonus target labels under `{BONUS}`. Outputs are confined to `{WORK}` and derived data under `{DATA}`.
+Inputs are locally obtained BDB2021 competition files and public bonus target labels supplied by user-provided paths. Raw files are not redistributed.
 
 Random seeds: HGB {SEED}, bootstrap {SEED}, pseudo-nearest {PSEUDO_SEED}.
 """
@@ -1035,22 +969,19 @@ Random seeds: HGB {SEED}, bootstrap {SEED}, pseudo-nearest {PSEUDO_SEED}.
     final_files = []
     for p in sorted(WORK.rglob("*")):
         if p.is_file():
-            final_files.append(f"- `{p}` - generated 2018 external-validation artifact.")
+            final_files.append(f"- `{p.relative_to(WORK)}` - generated 2018 external-validation artifact.")
     for p in sorted((DATA / "processed").glob("*")) + sorted((DATA / "manifests").glob("*")):
         if p.is_file():
-            final_files.append(f"- `{p}` - derived data or raw manifest.")
+            final_files.append(f"- `{p.relative_to(DATA)}` - derived data or raw manifest.")
     write(WORK / "reports" / "FINAL_FILE_INDEX.md", "# Final File Index\n\n" + "\n".join(final_files) + "\n")
 
     final_summary = {
-        "data": "obtained",
-        "target_receiver": "official",
+        "data": "obtained under applicable competition access terms; raw files are not redistributed",
+        "target_receiver_source": "public targeted-receiver bonus labels from tombliss/nfl-big-data-bowl-2021-bonus",
         "heldout_plays": int(pl[["gameId", "playId"]].drop_duplicates().shape[0]),
         "primary": primary,
         "lambda_ci": {"low": float(lam_ci.ci_low), "high": float(lam_ci.ci_high)},
         "pseudo": pseudo_sum,
-        "category": category,
-        "category_name": category_name,
-        "journal_recommendation": journal_rec,
     }
     write(WORK / "outputs" / "FINAL_SUMMARY.json", json.dumps(final_summary, indent=2))
 

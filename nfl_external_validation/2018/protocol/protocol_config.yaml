@@ -1,6 +1,6 @@
 data_source: official NFL Big Data Bowl 2021 competition files
-target_receiver_source: tombliss/nfl-big-data-bowl-2021-bonus targetedReceiver.csv
-target_label_mode: OFFICIAL_BONUS primary; reconstructed only for QC/sensitivity if
+target_receiver_source: public targeted-receiver bonus labels from tombliss/nfl-big-data-bowl-2021-bonus
+target_label_mode: public bonus labels primary; reconstructed labels only for QC/sensitivity if
   needed
 event_definitions:
   snap: earliest ball_snap
@@ -28,7 +28,7 @@ expanded_defender_set:
 - S
 - SS
 roles:
-  R: official targeted receiver
+  R: targeted receiver from public bonus labels
   N: nearest coverage-eligible defender to R at pass_forward
   O: remaining coverage-eligible defenders, within-play mean
 features:

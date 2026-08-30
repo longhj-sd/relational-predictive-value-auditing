@@ -72,7 +72,7 @@ def check_config(errors: list[str]) -> None:
         return
     if cfg.get("temporal_split", {}).get("heldout") != "weeks 14-17":
         fail(errors, "Config held-out split is not weeks 14-17.")
-    if cfg.get("target_receiver_source") != "tombliss/nfl-big-data-bowl-2021-bonus targetedReceiver.csv":
+    if cfg.get("target_receiver_source") != "public targeted-receiver bonus labels from tombliss/nfl-big-data-bowl-2021-bonus":
         fail(errors, "Config target-receiver source is not the documented tombliss dataset.")
 
 
