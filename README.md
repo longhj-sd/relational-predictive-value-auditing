@@ -36,9 +36,11 @@ Required: `event_id`, `agent_id`, `role`, `information_state`, `y_true`, `y_pred
 
 Agent-level loss, paired gain, role-specific gains, weighted aggregate gain, prespecified contrasts, context modulation, confidence intervals, and optional null diagnostics.
 
-## NFL implementation scaffolding
+## NFL implementation and validation materials
 
-NFL-specific interface templates are separated under `nfl_example/` and require local official data paths. They document the expected command-line entry points for preparing data, fitting models, running RPVA, and reproducing tables and figures from locally obtained official competition files. They are implementation scaffolding, not a verified full NFL analysis pipeline.
+NFL-specific interface templates are separated under `nfl_example/` and require local official data paths. They document the expected command-line entry points for preparing data, fitting models, running RPVA, and reproducing tables and figures from locally obtained official competition files. For the 2023 analysis, these remain implementation scaffolding rather than a verified full archived raw-data reconstruction pipeline.
+
+The independent 2018 external-season replication package is under `nfl_external_validation/2018/`. It includes the frozen protocol, executable reconstruction script, aggregate expected outputs, release verifier, environment notes, reports, and reviewer data-access instructions. It reconstructs the 2018 aggregate validation outputs from locally obtained authorized NFL Big Data Bowl 2021 files and the documented `targetedReceiver.csv` source.
 
 ## Data access boundary
 
@@ -56,7 +58,7 @@ Generic code is under `rpva/`; NFL-specific implementation scaffolding is under 
 
 ## Reproducibility
 
-Frozen audit configuration summaries and permitted derived summaries are included. Benchmark evidence is not rerun for release packaging. End-to-end reconstruction from raw official competition files has not been verified in this repository package.
+Frozen audit configuration summaries and permitted derived summaries are included. The 2018 external-season package has an automated verifier and documented command-line interface for reconstruction from authorized local competition files. The 2023 benchmark evidence is not upgraded by the 2018 package and should still be read as released implementation/audit scaffolding unless the full archived 2023 raw-data pipeline is independently recovered and verified.
 
 ## Authorship and maintenance
 

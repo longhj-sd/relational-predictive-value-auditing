@@ -1,0 +1,12 @@
+statistic,value
+bootstrap_replicates,2000
+cluster_unit,gameId
+interval_method,percentile
+G_R_ci_low,0.8662647137608417
+G_R_ci_high,0.9714874799626753
+G_N_ci_low,0.72395710699597
+G_N_ci_high,0.8389388217158774
+G_O_ci_low,0.3053818088663949
+G_O_ci_high,0.3621079856342689
+lambda_D_ci_low,0.38439750752999496
+lambda_D_ci_high,0.5098169945386133

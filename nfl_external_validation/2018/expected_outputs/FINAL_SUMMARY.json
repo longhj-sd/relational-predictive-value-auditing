@@ -1,0 +1,27 @@
+{
+  "data": "obtained",
+  "target_receiver": "official",
+  "heldout_plays": 3475,
+  "primary": {
+    "G_R": 0.9177859354384885,
+    "G_N": 0.7812103861312145,
+    "G_O": 0.3350894437250878,
+    "lambda_D": 0.4461209424061267,
+    "delta_RN": 0.136575549307274,
+    "delta_RO": 0.5826964917134008
+  },
+  "lambda_ci": {
+    "low": 0.38439750752999496,
+    "high": 0.5098169945386133
+  },
+  "pseudo": {
+    "observed_lambda_D": 0.4461209424061267,
+    "null_mean": 0.0001589305890027721,
+    "null_low": -0.057224847505317374,
+    "null_high": 0.05886041436992461,
+    "p_value": 0.0001999600079984003
+  },
+  "category": "A",
+  "category_name": "FULL DIRECTIONAL REPLICATION",
+  "journal_recommendation": "KEEP CURRENT JBD STRATEGY"
+}

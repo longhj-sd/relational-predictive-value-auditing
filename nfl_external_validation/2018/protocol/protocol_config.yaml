@@ -1,0 +1,85 @@
+data_source: official NFL Big Data Bowl 2021 competition files
+target_receiver_source: tombliss/nfl-big-data-bowl-2021-bonus targetedReceiver.csv
+target_label_mode: OFFICIAL_BONUS primary; reconstructed only for QC/sensitivity if
+  needed
+event_definitions:
+  snap: earliest ball_snap
+  forward: earliest pass_forward after snap
+  arrival: earliest pass_arrived after forward
+temporal_split:
+  train: weeks 1-11
+  validation: weeks 12-13
+  heldout: weeks 14-17
+coordinate_normalization: prespecified left-to-right coordinate normalization
+primary_defender_set:
+- CB
+- DB
+- FS
+- S
+- SS
+expanded_defender_set:
+- CB
+- DB
+- FS
+- ILB
+- LB
+- MLB
+- OLB
+- S
+- SS
+roles:
+  R: official targeted receiver
+  N: nearest coverage-eligible defender to R at pass_forward
+  O: remaining coverage-eligible defenders, within-play mean
+features:
+  A:
+  - n_input_frames
+  - input_start_x
+  - input_start_y
+  - input_end_x
+  - input_end_y
+  - input_delta_x
+  - input_delta_y
+  - input_path_length
+  - input_mean_speed
+  - input_max_speed
+  - input_mean_acceleration
+  - input_max_acceleration
+  - input_mean_dir
+  - input_mean_o
+  - play_direction
+  - player_side
+  - player_role
+  - player_position
+  H_add:
+  - num_frames_output
+  D_add:
+  - ball_land_x
+  - ball_land_y
+  - distance_to_ball_land_start
+  - distance_to_ball_land_end
+  - change_in_distance_to_ball_land
+loss: Euclidean endpoint error in yards
+HGB: sklearn HistGradientBoostingRegressor defaults, random_state 20260730; deterministic
+  preprocessing
+ExtraTrees: skipped unless exact submitted final configuration is recoverable
+bootstrap:
+  method: percentile game-cluster bootstrap
+  replicates: 2000
+  seed: 20260730
+pseudo_nearest:
+  permutations: 5000
+  seed: 20260731
+  p_value: add-one corrected two-sided absolute statistic
+estimands:
+- G_R
+- G_N
+- G_O
+- lambda_D
+- delta_RN
+- delta_RO
+sensitivity_analyses:
+- primary defender set
+- expanded defender set
+- +/-1 football endpoint
+- exclude ambiguous reconstructed-target QC flags
