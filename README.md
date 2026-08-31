@@ -1,77 +1,34 @@
-# Relational Predictive-Value Auditing
+# Relational Predictive-Value Auditing (RPVA)
 
-Relational predictive-value auditing (RPVA) is a held-out evaluation procedure for decomposing the incremental predictive value of nested information states across predefined relational positions in multi-agent predictions.
+## 1. What RPVA evaluates
+RPVA evaluates how paired held-out incremental predictive value from a nested information transition is allocated across prespecified relational roles in a multi-agent predictive system.
 
-## What RPVA answers
+## 2. Main estimands
+`G_R`, `G_N`, and `G_O` are role-specific gains. `lambda_D = G_N - G_O`, `delta_RN = G_R - G_N`, and `delta_RO = G_R - G_O` summarize relational contrasts.
 
-RPVA asks where the held-out value of an added information state is expressed across predefined roles.
+## 3. Controlled benchmark
+Aggregate-matched controlled profiles test whether RPVA recovers homogeneous and localized relational gain structures and separates subgroup absolute performance from incremental value allocation.
 
-## What RPVA does not claim
+## 4. 2023 primary audit
+The 2023 forward-time audit reports R > N > O and positive nearest-other localization in held-out passing-play records.
 
-RPVA is not a universal model evaluation, causal information allocation method, state-of-the-art predictor, production-ready system, live decision-support tool, or evidence of validation across sports.
+## 5. 2023 deterministic reconstruction
+A post hoc audit deterministically reconstructed the final 2023 HGB analysis from proven archived pipeline lineage. Source and held-out sample counts matched exactly, and all six headline estimates reproduced within 0.00045 yd.
 
-## Workflow
+## 6. 2018 external-season replication
+A harmonized 2018 public data release independently reproduces the principal R > N > O ordering and positive nearest-other localization.
 
-Held-out predictions -> paired losses -> predictive gains -> role aggregation -> contrasts and uncertainty.
+## 7. 2018 second-estimator sensitivity
+A post hoc ExtraTrees sensitivity using an ARCHIVED_2023_PROJECT configuration preserves the principal relational gain structure; absolute magnitudes remain estimator-dependent.
 
-## Installation
+## 8. How to reproduce
+Install the package, place authorized Kaggle/NFL data under the documented data directories, and run the validation scripts. Public-safe aggregate outputs are included where redistribution is allowed.
 
-```bash
-pip install -e .
-```
+## 9. Raw-data acquisition
+Raw NFL tracking data are not redistributed. Obtain the 2023 and 2018 source data from the original Kaggle/NFL Big Data Bowl sources under their access terms.
 
-## Minimal example
+## 10. Expected headline values
+2023: G_R 1.735, G_N 1.359, G_O 0.609, lambda_D 0.750. 2018 HGB: G_R 0.918, G_N 0.781, G_O 0.335, lambda_D 0.446. 2018 ExtraTrees: G_R 1.293, G_N 0.824, G_O 0.351, lambda_D 0.473.
 
-```bash
-python examples/minimal_rpva_example.py
-```
-
-Software usage example; not an additional validation study.
-
-## Input schema
-
-Required: `event_id`, `agent_id`, `role`, `information_state`, `y_true`, `y_pred`. Optional: `context`, `cluster_id`.
-
-## Outputs
-
-Agent-level loss, paired gain, role-specific gains, weighted aggregate gain, prespecified contrasts, context modulation, confidence intervals, and optional null diagnostics.
-
-## NFL implementation and validation materials
-
-NFL-specific interface templates are separated under `nfl_example/` and require local official data paths. They document the expected command-line entry points for preparing data, fitting models, running RPVA, and reproducing tables and figures from locally obtained official competition files. For the 2023 analysis, these remain implementation scaffolding rather than a verified full archived raw-data reconstruction pipeline.
-
-The independent 2018 external-season replication package is under `nfl_external_validation/2018/`. It includes the frozen protocol, executable reconstruction script, aggregate expected outputs, release verifier, environment notes, reports, and reviewer data-access instructions. It reconstructs the 2018 aggregate validation outputs from locally obtained authorized NFL Big Data Bowl 2021 files and the documented `targetedReceiver.csv` source.
-
-## Data access boundary
-
-Raw NFL tracking files are not redistributed. Users must obtain them from the official competition source and follow access terms.
-
-## Tests
-
-```bash
-pytest
-```
-
-## Repository structure
-
-Generic code is under `rpva/`; NFL-specific implementation scaffolding is under `nfl_example/`; permitted derived summaries are under `derived_outputs/`.
-
-## Reproducibility
-
-Frozen audit configuration summaries and permitted derived summaries are included. The 2018 external-season package has an automated verifier and documented command-line interface for reconstruction from authorized local competition files. The 2023 benchmark evidence is not upgraded by the 2018 package and should still be read as released implementation/audit scaffolding unless the full archived 2023 raw-data pipeline is independently recovered and verified.
-
-## Authorship and maintenance
-
-This repository was created and is maintained by Haojie Long, Longji Li, and Lifeng Zhang, the authors of the associated manuscript. The authors are responsible for the scientific design, analytical protocol, interpretation, released code, documentation, and versioned outputs.
-
-## Citation
-
-See `CITATION.cff`.
-
-## License
-
-No software license has currently been assigned. All rights are reserved by the authors unless permission is granted separately.
-
-## Limitations
-
-Role definitions must be justified before analysis. Nested information states do not automatically have causal interpretation. Leakage control is the application user's responsibility. The NFL example does not prove cross-domain validity.
+## 11. Repository/frozen release information
+Submission-specific reproducibility state: tag `kbs-submission-20260831-r2`, commit `ace677a6f953bd8a5912079247e7bc7258a8fa2c`.
