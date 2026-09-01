@@ -31,4 +31,4 @@ Raw NFL tracking data are not redistributed. Obtain the 2023 and 2018 source dat
 2023: G_R 1.735, G_N 1.359, G_O 0.609, lambda_D 0.750. 2018 HGB: G_R 0.918, G_N 0.781, G_O 0.335, lambda_D 0.446. 2018 ExtraTrees: G_R 1.293, G_N 0.824, G_O 0.351, lambda_D 0.473.
 
 ## 11. Repository/frozen release information
-Submission-specific reproducibility state: tag `kbs-submission-20260831-r2`, commit `78e8c3a2581b8bd44adaa5903a18e4a5b3286d7f`.
+Submission-specific public reproducibility release: tag `kbs-submission-20260901-r3`. Raw NFL competition files and row-level derived tracking/prediction files are not redistributed.
