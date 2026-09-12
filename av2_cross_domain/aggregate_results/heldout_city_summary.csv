@@ -1,0 +1,7 @@
+city,H_endpoint_mse,C_endpoint_mse,H_to_C_gain,FDE_improvement
+Austin,64.3665,58.5260,5.8405,0.4539
+Dearborn,74.9615,66.1101,8.8514,0.6153
+Miami,48.1674,43.9136,4.2538,0.3821
+Palo Alto,66.8470,62.2483,4.5987,0.4002
+Pittsburgh,48.4197,42.6260,5.7937,0.3961
+Washington DC,46.9950,41.7750,5.2200,0.4003

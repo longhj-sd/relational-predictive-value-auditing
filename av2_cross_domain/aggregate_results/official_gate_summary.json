@@ -1,0 +1,23 @@
+{
+  "artifact_type": "TRANSCRIPTION_OF_FROZEN_RESULTS",
+  "gate_1": {
+    "criterion": "lower bound of two-sided 95% CI for aggregate H_to_C endpoint-loss gain > 0",
+    "status": "PASS"
+  },
+  "gate_2": {
+    "criteria": [
+      "two-sided 95% CI for lambda excludes 0",
+      "two-sided add-one pseudo-nearest p < 0.05"
+    ],
+    "lambda_positive_required": false,
+    "pseudo_nearest_extremeness_rule": "|lambda_null| >= |lambda_obs|",
+    "status": "PASS"
+  },
+  "bootstrap_replicates": 5000,
+  "bootstrap_seed": 2026090721,
+  "pseudo_nearest_replicates": 5000,
+  "pseudo_nearest_seed": 2026090722,
+  "official_run_ordinal": 1,
+  "fresh_official_runs_authorized": 1,
+  "confirmatory_disposition": "CONFIRMATORY"
+}

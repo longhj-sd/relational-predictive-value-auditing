@@ -15,8 +15,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[3]
 PKG = ROOT / "nfl_external_validation" / "2018"
 FORBIDDEN_PATH_PATTERNS = [
-    re.compile(r"D:\\work\\NFL", re.IGNORECASE),
-    re.compile(r"C:\\Users\\Administrator", re.IGNORECASE),
+    re.compile(r"[A-Za-z]:\\work\\NFL", re.IGNORECASE),
+    re.compile("Users" + r"\\Administrator", re.IGNORECASE),
 ]
 RAW_FILE_NAMES = {"games.csv", "plays.csv", "players.csv", "targetedReceiver.csv"}
 RAW_FILE_PATTERNS = [re.compile(r"week\d+\.csv$", re.IGNORECASE), re.compile(r"tracking.*\.csv$", re.IGNORECASE)]

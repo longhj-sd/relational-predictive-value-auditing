@@ -1,0 +1,11 @@
+Python 3.12.3
+numpy 2.4.3
+pandas 3.0.1
+pyarrow 24.0.0
+scikit-learn 1.8.0
+PyYAML 6.0.3
+tabulate 0.10.0
+
+tabulate is reporting-only.
+
+Environment SHA-256: c27192539c77751658ee66759843e5bc3142063823ca13ef18e6e287a345150f

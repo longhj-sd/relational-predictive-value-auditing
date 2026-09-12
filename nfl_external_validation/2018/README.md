@@ -59,8 +59,8 @@ PowerShell example:
 ```powershell
 python nfl_external_validation\2018\scripts\run_2018_external_replication.py `
   --config nfl_external_validation\2018\protocol\protocol_config.yaml `
-  --raw-data-root "D:\path\to\authorized\nfl_bdb2021_data" `
-  --target-label-file "D:\path\to\targetedReceiver.csv" `
+  --raw-data-root "<authorized-nfl-bdb2021-data>" `
+  --target-label-file "<targetedReceiver.csv>" `
   --output-dir outputs_2018
 ```
 

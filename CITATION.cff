@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "Relational predictive-value auditing"
-message: "If you use this software, please cite the associated manuscript."
+message: "If you use this software or the accompanying reproducibility materials, please cite it as below."
+title: "Relational predictive-value auditing for multi-agent predictive systems: A dependence-aware evaluation framework with cross-domain confirmation"
 authors:
   - family-names: Long
     given-names: Haojie
@@ -8,5 +8,4 @@ authors:
     given-names: Longji
   - family-names: Zhang
     given-names: Lifeng
-version: "1.0.0-rc1"
 repository-code: "https://github.com/longhj-sd/relational-predictive-value-auditing"

@@ -4,6 +4,8 @@ __pycache__/
 .env
 *.csv
 !derived_outputs/**/*.csv
+!PUBLIC_RELEASE_MANIFEST.csv
+!av2_cross_domain/aggregate_results/*.csv
 
 __pycache__/
 *.py[cod]

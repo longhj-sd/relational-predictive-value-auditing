@@ -1,5 +1,7 @@
 # KBS Submission Reproducibility Release Manifest, 2026-09-01
 
+Legacy note: retained for historical NFL-only context. The authoritative cross-domain local pre-submission candidate is `v1.0.0-rc3`; see `CURRENT_RELEASE.md`, `RELEASE_NOTES_v1.0.0-rc3.md`, and `PUBLIC_RELEASE_MANIFEST.csv`.
+
 Raw NFL competition files and row-level derived tracking/prediction files are not redistributed.
 
 | Artifact | Public release path | Status | Reason |

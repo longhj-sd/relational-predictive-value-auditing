@@ -1,0 +1,1 @@
+RPVA defines paired held-out gains across nested information states, role-specific gain vectors, prespecified contrasts, dependence-aware uncertainty, and relational-null diagnostics. Core notation includes S₀ ⊂ S₁, gᵢⱼ, Gᵣ, G = (G₁, ..., G_K)ᵀ, λ = aᵀG, G_agg = wᵀG, and wᵀv = 0.

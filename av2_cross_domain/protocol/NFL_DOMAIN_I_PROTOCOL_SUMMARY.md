@@ -1,0 +1,1 @@
+Domain I uses NFL passing-play tracking with R as targeted receiver, N as nearest observed coverage-eligible defender to R at the final observed input frame, and O as the within-play mean over remaining observed coverage-eligible defenders.

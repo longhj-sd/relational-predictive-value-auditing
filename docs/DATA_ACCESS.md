@@ -1,3 +1,7 @@
 # Data Access
 
-Raw NFL tracking files must be obtained from the official NFL Big Data Bowl competition source under its access and use terms. This repository provides code, configuration, and permitted derived summaries only. Scripts accept user-provided local data paths and do not implement automatic downloading.
+NFL source data: official Kaggle NFL Big Data Bowl sources.
+
+AV2 source data: official Argoverse 2 Motion Forecasting source.
+
+Not redistributed: raw NFL tracking files, raw AV2 scenarios, row-level restricted derivatives, model binaries unless explicitly public-safe, private checkpoint dumps, and local execution artifacts.
